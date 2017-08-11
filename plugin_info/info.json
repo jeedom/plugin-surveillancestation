@@ -1,0 +1,9 @@
+{
+	"id" : "surveillancestation",
+	"name" : "Surveillance station",
+	"description" : "Plugin pour surveillance station",
+	"licence" : "AGPL",
+	"author" : "Loïc",
+	"require" : "3.0",
+	"category" : "security"
+}
