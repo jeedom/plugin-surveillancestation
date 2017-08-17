@@ -27,6 +27,18 @@ class surveillancestation extends eqLogic {
 
 	/*     * ***********************Methode static*************************** */
 
+	public static function event() {
+		$cmd = surveillancestationCmd::byId(init('id'));
+		if (!is_object($cmd)) {
+			throw new Exception('Commande ID surveillance station inconnu : ' . init('id'));
+		}
+		if ($cmd->getType() == 'action') {
+			$cmd->execCmd(array());
+		} else {
+			$cmd->event(init('value'));
+		}
+	}
+
 	public static function callUrl($_parameters = null, $_recall = 0) {
 		$url = self::getUrl() . '/webapi/' . self::getApi($_parameters['api'], 'path') . '?version=' . self::getApi($_parameters['api'], 'version');
 		if ($_parameters !== null && is_array($_parameters)) {
@@ -268,7 +280,10 @@ class surveillancestationCmd extends cmd {
 	/*     * *********************Methode d'instance************************* */
 
 	public function dontRemoveCmd() {
-		return true;
+		if ($this->getLogicalId() != '') {
+			return true;
+		}
+		return false;
 	}
 
 	public function execute($_options = array()) {
