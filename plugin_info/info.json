@@ -5,5 +5,7 @@
 	"licence" : "AGPL",
 	"author" : "Loïc",
 	"require" : "3.0",
-	"category" : "security"
+	"category" : "security",
+	"changelog" : "https://github.com/jeedom/plugin-surveillancestation/blob/stable/doc/#language#/changelog.asciidoc",
+	"documentation" : "https://github.com/jeedom/plugin-surveillancestation/blob/stable/doc/#language#/index.asciidoc"
 }

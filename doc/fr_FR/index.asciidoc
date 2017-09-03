@@ -1,0 +1,9 @@
+= Surveillance Station
+
+Ce plugin permet de récupérer les informations de Synology Surveillance Station
+
+include::configuration.asciidoc[]
+
+'''
+
+include::changelog.asciidoc[]
