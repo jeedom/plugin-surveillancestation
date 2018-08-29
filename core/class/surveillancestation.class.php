@@ -297,10 +297,7 @@ class surveillancestationCmd extends cmd {
 		if ($this->getLogicalId() == 'disable') {
 			surveillancestation::callUrl(array('api' => 'SYNO.SurveillanceStation.Camera', 'method' => 'Disable', 'idList' => $eqLogic->getConfiguration('id')));
 		}
-		surveillancestation::cron5();
 	}
 
 	/*     * **********************Getteur Setteur*************************** */
 }
-
- 
