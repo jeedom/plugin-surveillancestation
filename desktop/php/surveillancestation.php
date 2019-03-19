@@ -13,12 +13,12 @@ $eqLogics = eqLogic::byType($plugin->getId());
 		<legend><i class="fa fa-cog"></i>  {{Gestion}}</legend>
 		<div class="eqLogicThumbnailContainer">
 			<div class="cursor eqLogicAction logoPrimary" data-action="add"  >
-				<i class="fa fa-plus-circle" style="font-size : 6em;color:#94ca02;"></i>
+				<i class="fas fa-plus-circle" style="font-size : 6em;color:#94ca02;"></i>
 				<br>
 				<span style="font-size : 1.1em;position:relative; top : 23px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02">{{Ajouter}}</span>
 			</div>
 			<div class="cursor eqLogicAction logoSecondary" data-action="gotoPluginConf" >
-				<i class="fa fa-wrench" style="font-size : 6em;color:#767676;"></i>
+				<i class="fas fa-wrench" style="font-size : 6em;color:#767676;"></i>
 				<br>
 				<span >{{Configuration}}</span>
 			</div>
@@ -109,7 +109,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
 				</form>
 			</div>
 			<div role="tabpanel" class="tab-pane" id="commandtab"><br/>
-				<a class="btn btn-success btn-sm cmdAction pull-right" data-action="add"><i class="fa fa-plus-circle"></i> {{Ajouter une commande}}</a>
+				<a class="btn btn-success btn-sm cmdAction pull-right" data-action="add"><i class="fas fa-plus-circle"></i> {{Ajouter une commande}}</a>
 				<br/><br/>
 				<div class="alert alert-info">Exemple d’URL à appeler : <?php echo network::getNetworkAccess('external') ?>/core/api/jeeApi.php?api=<?php echo jeedom::getApiKey('surveillancestation'); ?>&type=surveillancestation&id=#ID_CMD#&value=#VALEUR#</div>
 				<table id="table_cmd" class="table table-bordered table-condensed">
