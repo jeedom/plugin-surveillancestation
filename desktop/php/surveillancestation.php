@@ -10,7 +10,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
 <div class="row row-overflow">
 	<div class="col-xs-12 eqLogicThumbnailDisplay">
 		<legend>{{Mes surveillancestation}}</legend>
-		<legend><i class="fa fa-cog"></i>  {{Gestion}}</legend>
+		<legend><i class="fas fa-cog"></i>  {{Gestion}}</legend>
 		<div class="eqLogicThumbnailContainer">
 			<div class="cursor eqLogicAction logoPrimary" data-action="add"  >
 				<i class="fas fa-plus-circle" style="font-size : 6em;color:#94ca02;"></i>
@@ -23,7 +23,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
 				<span >{{Configuration}}</span>
 			</div>
 		</div>
-		<legend><i class="fa fa-table"></i> {{Mes surveillancestation}}</legend>
+		<legend><i class="fas fa-table"></i> {{Mes surveillancestation}}</legend>
 		<input class="form-control" placeholder="{{Rechercher}}" id="in_searchEqlogic" />
 		<div class="eqLogicThumbnailContainer">
 			<?php
@@ -42,13 +42,13 @@ $eqLogics = eqLogic::byType($plugin->getId());
 	<div class="col-xs-12 eqLogic" style="display: none;">
 		<div class="input-group pull-right" style="display:inline-flex">
 			<span class="input-group-btn">
-				<a class="btn btn-default eqLogicAction btn-sm roundedLeft" data-action="configure"><i class="fa fa-cogs"></i> {{Configuration avancée}}</a><a class="btn btn-sm btn-success eqLogicAction" data-action="save"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a><a class="btn btn-danger btn-sm eqLogicAction roundedRight" data-action="remove"><i class="fa fa-minus-circle"></i> {{Supprimer}}</a>
+				<a class="btn btn-default eqLogicAction btn-sm roundedLeft" data-action="configure"><i class="fa fa-cogs"></i> {{Configuration avancée}}</a><a class="btn btn-sm btn-success eqLogicAction" data-action="save"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a><a class="btn btn-danger btn-sm eqLogicAction roundedRight" data-action="remove"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
 			</span>
 		</div>
 		<ul class="nav nav-tabs" role="tablist">
-			<li role="presentation"><a href="#" class="eqLogicAction" aria-controls="home" role="tab" data-toggle="tab" data-action="returnToThumbnailDisplay"><i class="fa fa-arrow-circle-left"></i></a></li>
-			<li role="presentation" class="active"><a href="#eqlogictab" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-tachometer"></i> {{Equipement}}</a></li>
-			<li role="presentation"><a href="#commandtab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-list-alt"></i> {{Commandes}}</a></li>
+			<li role="presentation"><a href="#" class="eqLogicAction" aria-controls="home" role="tab" data-toggle="tab" data-action="returnToThumbnailDisplay"><i class="fas fa-arrow-circle-left"></i></a></li>
+			<li role="presentation" class="active"><a href="#eqlogictab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-tachometer-alt"></i> {{Equipement}}</a></li>
+			<li role="presentation"><a href="#commandtab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-list-alt"></i> {{Commandes}}</a></li>
 		</ul>
 		<div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
 			<div role="tabpanel" class="tab-pane active" id="eqlogictab">
