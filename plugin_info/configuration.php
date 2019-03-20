@@ -57,7 +57,7 @@ if (!isConnect()) {
 		<div class="form-group">
 			<label class="col-lg-3 control-label">{{Synchroniser}}</label>
 			<div class="col-lg-3">
-				<a class="btn btn-default bt_syncSurveillanceStation"><i class='fa fa-check'></i> {{Lancer}}</a>
+				<a class="btn btn-default bt_syncSurveillanceStation"><i class='fas fa-check'></i> {{Lancer}}</a>
 			</div>
 		</div>
 	</fieldset>
