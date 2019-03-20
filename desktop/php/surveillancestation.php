@@ -15,7 +15,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
 			<div class="cursor eqLogicAction logoPrimary" data-action="add"  >
 				<i class="fas fa-plus-circle" style="font-size : 6em;color:#94ca02;"></i>
 				<br>
-				<span style="font-size : 1.1em;position:relative; top : 23px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02">{{Ajouter}}</span>
+				<span >{{Ajouter}}</span>
 			</div>
 			<div class="cursor eqLogicAction logoSecondary" data-action="gotoPluginConf" >
 				<i class="fas fa-wrench" style="font-size : 6em;color:#767676;"></i>
