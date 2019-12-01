@@ -1,32 +1,32 @@
 <?php
 
 /* This file is part of Jeedom.
- *
- * Jeedom is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * Jeedom is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
- */
+*
+* Jeedom is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* Jeedom is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
+*/
 
 /* * ***************************Includes********************************* */
 require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
 
 class surveillancestation extends eqLogic {
 	/*     * *************************Attributs****************************** */
-
+	
 	private static $_sid = null;
 	private static $_api_info = null;
-
+	
 	/*     * ***********************Methode static*************************** */
-
+	
 	public static function event() {
 		$cmd = surveillancestationCmd::byId(init('id'));
 		if (!is_object($cmd)) {
@@ -38,7 +38,7 @@ class surveillancestation extends eqLogic {
 			$cmd->event(init('value'));
 		}
 	}
-
+	
 	public static function callUrl($_parameters = null, $_recall = 0) {
 		$url = self::getUrl() . '/webapi/' . self::getApi($_parameters['api'], 'path') . '?version=' . self::getApi($_parameters['api'], 'version');
 		if ($_parameters !== null && is_array($_parameters)) {
@@ -59,7 +59,7 @@ class surveillancestation extends eqLogic {
 		}
 		return $result;
 	}
-
+	
 	public static function getSid() {
 		if (self::$_sid !== null) {
 			return self::$_sid;
@@ -78,7 +78,7 @@ class surveillancestation extends eqLogic {
 		self::$_sid = $data['data']['sid'];
 		return $data['data']['sid'];
 	}
-
+	
 	public static function deleteSid() {
 		self::$_sid = null;
 		if (config::byKey('SYNO.SID.Session', 'surveillancestation') == '') {
@@ -92,14 +92,14 @@ class surveillancestation extends eqLogic {
 		}
 		config::remove('SYNO.SID.Session', 'surveillancestation');
 	}
-
+	
 	public static function getURL() {
 		if (config::byKey('https', 'surveillancestation')) {
 			return 'https://' . config::byKey('ip', 'surveillancestation') . ':' . config::byKey('port', 'surveillancestation');
 		}
 		return 'http://' . config::byKey('ip', 'surveillancestation') . ':' . config::byKey('port', 'surveillancestation');
 	}
-
+	
 	public static function getApi($_api, $_key) {
 		if (self::$_api_info == null && (config::byKey('api_info', 'surveillancestation') == '' || !is_array(config::byKey('api_info', 'surveillancestation')))) {
 			self::updateAPI();
@@ -112,7 +112,7 @@ class surveillancestation extends eqLogic {
 		}
 		return '';
 	}
-
+	
 	public static function updateAPI() {
 		$list_API = array(
 			'SYNO.API.Auth',
@@ -136,11 +136,12 @@ class surveillancestation extends eqLogic {
 		}
 		config::save('api_info', $api, 'surveillancestation');
 	}
-
+	
 	public static function discover() {
 		self::deleteSid();
 		self::updateAPI();
 		$data = self::callUrl(array('api' => 'SYNO.SurveillanceStation.Camera', 'method' => 'List'));
+		log::add('surveillancestation','debug',json_encode($data['data']['cameras']));
 		foreach ($data['data']['cameras'] as $camera) {
 			$eqLogic = self::byLogicalId('camera' . $camera['id'], 'surveillancestation');
 			if (!is_object($eqLogic)) {
@@ -158,7 +159,7 @@ class surveillancestation extends eqLogic {
 			$eqLogic->save();
 		}
 	}
-
+	
 	public static function cron5() {
 		$data = self::callUrl(array('api' => 'SYNO.SurveillanceStation.Camera', 'method' => 'List'));
 		foreach ($data['data']['cameras'] as $camera) {
@@ -168,53 +169,53 @@ class surveillancestation extends eqLogic {
 			}
 			$eqLogic->checkAndUpdateCmd('state', self::convertState($camera['status']));
 		}
-
+		
 	}
-
+	
 	public static function convertState($_state) {
 		switch ($_state) {
 			case 1:
-				return __('Active', __FILE__);
+			return __('Active', __FILE__);
 			case 2:
-				return __('Supprimée', __FILE__);
+			return __('Supprimée', __FILE__);
 			case 3:
-				return __('Déconnectée', __FILE__);
+			return __('Déconnectée', __FILE__);
 			case 4:
-				return __('Indisponible', __FILE__);
+			return __('Indisponible', __FILE__);
 			case 5:
-				return __('Prête', __FILE__);
+			return __('Prête', __FILE__);
 			case 6:
-				return __('Inaccessible', __FILE__);
+			return __('Inaccessible', __FILE__);
 			case 7:
-				return __('Désactivée', __FILE__);
+			return __('Désactivée', __FILE__);
 			case 8:
-				return __('Non reconnue', __FILE__);
+			return __('Non reconnue', __FILE__);
 			case 9:
-				return __('Parametrage', __FILE__);
+			return __('Parametrage', __FILE__);
 			case 10:
-				return __('Serveur déconnecté', __FILE__);
+			return __('Serveur déconnecté', __FILE__);
 			case 11:
-				return __('Migration', __FILE__);
+			return __('Migration', __FILE__);
 			case 12:
-				return __('Autre', __FILE__);
+			return __('Autre', __FILE__);
 			case 13:
-				return __('Stockage retiré', __FILE__);
+			return __('Stockage retiré', __FILE__);
 			case 14:
-				return __('Arrêt', __FILE__);
+			return __('Arrêt', __FILE__);
 			case 15:
-				return __('Historique de connexion échoué', __FILE__);
+			return __('Historique de connexion échoué', __FILE__);
 			case 16:
-				return __('Non autorisé', __FILE__);
+			return __('Non autorisé', __FILE__);
 			case 17:
-				return __('Erreur RTSP', __FILE__);
+			return __('Erreur RTSP', __FILE__);
 			case 18:
-				return __('Aucune video', __FILE__);
+			return __('Aucune video', __FILE__);
 		}
 		return __('Inconnu', __FILE__);
 	}
-
+	
 	/*     * *********************Méthodes d'instance************************* */
-
+	
 	public function postSave() {
 		$cmd = $this->getCmd(null, 'state');
 		if (!is_object($cmd)) {
@@ -229,13 +230,13 @@ class surveillancestation extends eqLogic {
 		$cmd->setIsVisible(1);
 		$cmd->save();
 		$state_id = $cmd->getId();
-
+		
 		$cmd = $this->getCmd('action', 'enable');
 		if (!is_object($cmd)) {
 			$cmd = new surveillancestationCmd();
 			$cmd->setName(__('Activer', __FILE__));
 			$cmd->setOrder(2);
-
+			
 		}
 		$cmd->setEqLogic_id($this->getId());
 		$cmd->setLogicalId('enable');
@@ -243,7 +244,7 @@ class surveillancestation extends eqLogic {
 		$cmd->setSubtype('other');
 		$cmd->setIsVisible(1);
 		$cmd->save();
-
+		
 		$cmd = $this->getCmd('action', 'disable');
 		if (!is_object($cmd)) {
 			$cmd = new surveillancestationCmd();
@@ -256,7 +257,7 @@ class surveillancestation extends eqLogic {
 		$cmd->setSubtype('other');
 		$cmd->setIsVisible(1);
 		$cmd->save();
-
+		
 		$refresh = $this->getCmd(null, 'refresh');
 		if (!is_object($refresh)) {
 			$refresh = new surveillancestationCmd();
@@ -268,24 +269,24 @@ class surveillancestation extends eqLogic {
 		$refresh->setSubType('other');
 		$refresh->save();
 	}
-
+	
 	/*     * **********************Getteur Setteur*************************** */
 }
 
 class surveillancestationCmd extends cmd {
 	/*     * *************************Attributs****************************** */
-
+	
 	/*     * ***********************Methode static*************************** */
-
+	
 	/*     * *********************Methode d'instance************************* */
-
+	
 	public function dontRemoveCmd() {
 		if ($this->getLogicalId() != '') {
 			return true;
 		}
 		return false;
 	}
-
+	
 	public function execute($_options = array()) {
 		if ($this->getType() == 'info') {
 			return;
@@ -298,6 +299,6 @@ class surveillancestationCmd extends cmd {
 			surveillancestation::callUrl(array('api' => 'SYNO.SurveillanceStation.Camera', 'method' => 'Disable', 'idList' => $eqLogic->getConfiguration('id')));
 		}
 	}
-
+	
 	/*     * **********************Getteur Setteur*************************** */
 }
