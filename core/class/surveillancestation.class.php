@@ -24,6 +24,7 @@ class surveillancestation extends eqLogic {
 	
 	private static $_sid = null;
 	private static $_api_info = null;
+	public static $_encryptConfigKey = array('user','password','ip','port');
 	
 	/*     * ***********************Methode static*************************** */
 	
