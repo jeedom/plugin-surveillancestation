@@ -225,6 +225,7 @@ class surveillancestation extends eqLogic {
 			$cmd->setName(__('Status', __FILE__));
 			$cmd->setOrder(1);
 		}
+		$cmd->setConfiguration('repeatEventManagement','never');
 		$cmd->setType('info');
 		$cmd->setSubType('string');
 		$cmd->setEqLogic_id($this->getId());
